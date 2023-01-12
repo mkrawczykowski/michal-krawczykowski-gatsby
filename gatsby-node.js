@@ -1,5 +1,5 @@
-exports.createPages = async ({ actions, graphql }) =>{
-    const result graphql(`
+// exports.createPages = async ({ actions, graphql }) =>{
+//     const result graphql(`
     
-    `)
-}
+//     `)
+// }
