@@ -1,11 +1,27 @@
 import React from 'react';
 import {graphql} from 'gatsby';
-import Layout from '../components/Layout/Layout';
+import Layout from '../components/structure/Layout/Layout';
 
-const PageTemplate = () => {
+export const query = graphql`
+    query($id: String!){
+        wpPage(id: {eq: $id}){
+            slug
+            title
+        }
+    }
+`
+
+const PageTemplate = ({data}) => {
+    const title = data.wpPage.title;
+    const slug = data.wpPage.slug;
     return(
         <Layout>
-            <p>test</p>
+            <>
+                {title}
+                <pre>{JSON.stringify(data, null, 2)}</pre>            
+                {/* <pre>{JSON.stringify(title, null, 2)}</pre> */}
+            </>
+
         </Layout>
     )
 }
