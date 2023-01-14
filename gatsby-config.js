@@ -7,6 +7,9 @@ module.exports = {
     {
       resolve: 'gatsby-source-wordpress',
       options: {
+        schema: {
+          timeout: 100000,
+        },
         "url": "https://mk.stronyireszta.pl/graphql"
       }
     }, 
