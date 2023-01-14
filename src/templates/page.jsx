@@ -18,8 +18,6 @@ const PageTemplate = ({data}) => {
         <Layout>
             <>
                 {title}
-                <pre>{JSON.stringify(data, null, 2)}</pre>            
-                {/* <pre>{JSON.stringify(title, null, 2)}</pre> */}
             </>
 
         </Layout>
