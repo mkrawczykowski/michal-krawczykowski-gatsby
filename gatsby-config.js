@@ -7,7 +7,7 @@ module.exports = {
     {
       resolve: 'gatsby-source-wordpress',
       options: {
-        "url": "https://blogdeva.stronyireszta.pl/graphql"
+        "url": "https://mk.stronyireszta.pl/graphql"
       }
     }, 
     "gatsby-plugin-image", "gatsby-plugin-sharp", "gatsby-transformer-sharp", "gatsby-plugin-sass"]
