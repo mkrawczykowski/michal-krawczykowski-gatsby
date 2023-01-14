@@ -1,11 +1,18 @@
 import React from 'react';
-import * as styles from './Layout.module.scss';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+// import * as styles from './Layout.module.scss';
 
 const Layout = ({children}) => {
     return(
-        <main>
-            {children}
-        </main>
+        <>
+            <Header></Header>
+            <main>
+                {children}
+            </main>
+            <Footer></Footer>
+        </>
+        
     )
 }
 
