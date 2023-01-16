@@ -30,12 +30,26 @@ $gap: 2rem;
       $breakpointValuePx: $breakpointValue * 1px;
 
       @media screen and (min-width:#{$breakpointValuePx}){
-        @for $i from 1 through 12{
+        @for $i from 12 through 1{
+          //no-breapoint classes
+          .col-#{$i} {
+            width: calc(#{$colWidth} * #{$i});
+            $parentWidth: $colWidth * $i;
+
+            @for $childIndex from $i through 1{
+              .col-#{$childIndex} {
+                $fullToParentRatio: math.div(12,$i);
+                $parentToChildRatio: math.div(12,$i);
+                width: math.div(100%, $parentWidth) * $childIndex * $colWidth;
+              }
+            }
+          }
+
           .col-#{$breakpointName}-#{$i} {
             width: calc(#{$colWidth} * #{$i});
             $parentWidth: $colWidth * $i;
 
-            @for $childIndex from 1 through 12{
+            @for $childIndex from $i through 1{
               .col-#{$breakpointName}-#{$childIndex} {
                 $fullToParentRatio: math.div(12,$i);
                 $parentToChildRatio: math.div(12,$i);
@@ -44,19 +58,7 @@ $gap: 2rem;
             }
           }
 
-        //no-breapoint classes
-        .col-#{$i} {
-          width: calc(#{$colWidth} * #{$i});
-          $parentWidth: $colWidth * $i;
-
-          @for $childIndex from 1 through 12{
-            .col-#{$childIndex} {
-              $fullToParentRatio: math.div(12,$i);
-              $parentToChildRatio: math.div(12,$i);
-              width: math.div(100%, $parentWidth) * $childIndex * $colWidth;
-            }
-          }
-        }
+        
 
 
         }
