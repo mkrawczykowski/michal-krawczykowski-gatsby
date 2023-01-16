@@ -16,7 +16,7 @@ exports.createPages = async ({ actions, graphql }) =>{
         // https://stackoverflow.com/questions/59868720/how-can-i-set-the-index-page-of-my-gatsby-site-to-be-one-of-the-dynamically-gene
         // with 'uri' it would be '/start/'
         if (page.slug==='start') {
-            page.slug = '/'    
+            page.slug = '/'
         }
         
         actions.createPage(
