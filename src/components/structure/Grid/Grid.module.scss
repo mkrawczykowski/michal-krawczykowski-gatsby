@@ -23,9 +23,6 @@ $gap: 2rem;
     .col{
       padding-right: calc($gap / 2);
       padding-left: calc($gap / 2);
-      // flex-basis: 100%;
-      // flex-grow: 0;
-      // max-width: 100%;
     }
 
     @each $breakpointName, $breakpointValue in variables.$breakpoints {
@@ -42,21 +39,29 @@ $gap: 2rem;
               .col-#{$breakpointName}-#{$childIndex} {
                 $fullToParentRatio: math.div(12,$i);
                 $parentToChildRatio: math.div(12,$i);
-                // width: calc(#{$parentWidth} * #{$fullToParentRatio});
-                // width: calc(#{$parentWidth} * #{$fullToParentRatio} );
-                // width: math.div(1, $i) * $childIndex * $colWidth;
                 width: math.div(100%, $parentWidth) * $childIndex * $colWidth;
               }
             }
+          }
 
+        //no-breapoint classes
+        .col-#{$i} {
+          width: calc(#{$colWidth} * #{$i});
+          $parentWidth: $colWidth * $i;
 
-
-            // .col-lg-6{
-            //   $test: math.div(12,6);
-            //   width: calc(math.div(#{$parentWidth}, #{$test}));
-            // }
+          @for $childIndex from 1 through 12{
+            .col-#{$childIndex} {
+              $fullToParentRatio: math.div(12,$i);
+              $parentToChildRatio: math.div(12,$i);
+              width: math.div(100%, $parentWidth) * $childIndex * $colWidth;
+            }
           }
         }
+
+
+        }
+
+        
       }
     }
   }  
