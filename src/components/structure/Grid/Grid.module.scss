@@ -1,0 +1,65 @@
+@use '../../../styles/global/variables';
+@use 'sass:math';
+
+// Grid settings
+$colWidth:  math.div(100%, 12);
+$containerHorizontalPadding: 2; //rem units
+$container-width: 136; //rem units
+$gap: 2rem;
+
+.container{
+  max-width: calc(($container-width * 1rem) + $gap);
+  padding: 0 calc($containerHorizontalPadding / 2) * 1rem;
+  margin: 0 auto;
+
+  .row{
+    display: flex;
+    margin-left: calc($gap / 2 * -1);
+    margin-right: calc($gap / 2 * -1);
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+    .col{
+      padding-right: calc($gap / 2);
+      padding-left: calc($gap / 2);
+      // flex-basis: 100%;
+      // flex-grow: 0;
+      // max-width: 100%;
+    }
+
+    @each $breakpointName, $breakpointValue in variables.$breakpoints {
+      $indexBreakpoint: index((variables.$breakpoints), ($breakpointName, $breakpointValue));
+      $breakpointValuePx: $breakpointValue * 1px;
+
+      @media screen and (min-width:#{$breakpointValuePx}){
+        @for $i from 1 through 12{
+          .col-#{$breakpointName}-#{$i} {
+            width: calc(#{$colWidth} * #{$i});
+            $parentWidth: $colWidth * $i;
+
+            @for $childIndex from 1 through 12{
+              .col-#{$breakpointName}-#{$childIndex} {
+                $fullToParentRatio: math.div(12,$i);
+                $parentToChildRatio: math.div(12,$i);
+                // width: calc(#{$parentWidth} * #{$fullToParentRatio});
+                // width: calc(#{$parentWidth} * #{$fullToParentRatio} );
+                // width: math.div(1, $i) * $childIndex * $colWidth;
+                width: math.div(100%, $parentWidth) * $childIndex * $colWidth;
+              }
+            }
+
+
+
+            // .col-lg-6{
+            //   $test: math.div(12,6);
+            //   width: calc(math.div(#{$parentWidth}, #{$test}));
+            // }
+          }
+        }
+      }
+    }
+  }  
+}
+
+
