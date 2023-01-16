@@ -50,16 +50,15 @@ const Col = ({children, classes}) => {
                 // console.log('position')
                 // console.log(position)
                 classToReactify = removedDashClass;
-                console.log('styles.removedDashClass');
                 
                 console.log('------------');
             }
-
-            console.log('styles')
-                console.log(styles)
-                console.log(styles[removedDashClass])
+            console.log(styles)
+            console.log('styles.removedDashClass')
+                
+            console.log(styles[removedDashClass])
             console.log('========================================')
-            return removedDashClass;
+            return styles[removedDashClass];
         }
 
 
@@ -71,7 +70,7 @@ const Col = ({children, classes}) => {
         reactifiedClasses += ' ';
     })
     return(
-        <div className={`col ${reactifiedClasses}`}>
+        <div className={[styles.col, reactifiedClasses].join(' ')}>
             {children}
         </div>
     )
