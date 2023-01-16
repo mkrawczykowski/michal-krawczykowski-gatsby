@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'gatsby';
 import * as styles from './Header.module.scss';
 
-const Header = () =>{
+const Header = () => {
     return(
         <header>
             <nav>
