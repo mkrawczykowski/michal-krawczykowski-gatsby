@@ -19,12 +19,11 @@ const PageTemplate = ({data}) => {
         <Layout>
             <Container>
                 <Row>
-                    <Col classes="col-12 col-lg-6">{title}</Col>
-                    <Col classes="col-12 col-lg-6">
-                        eee
-                        {/* <Row>
-                            <Col classes="col-6">asd</Col>
-                        </Row> */}
+                    <Col classes="col-xs-12 col-lg-6">{title}</Col>
+                    <Col classes="col-xs-12 col-lg-6">
+                        <Row>
+                            <Col classes="col-xs-6">asd</Col>
+                        </Row>
                     </Col>
                 </Row>
             </Container>
