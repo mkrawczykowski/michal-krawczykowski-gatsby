@@ -33,7 +33,6 @@ $gap: 2rem;
 
         @for $childIndex from $i through 1{
           .col-#{$childIndex} {
-            $fullToParentRatio: math.div(12,$i);
             $parentToChildRatio: math.div(12,$i);
             width: math.div(100%, $parentWidth) * $childIndex * $colWidth;
           }
@@ -42,7 +41,6 @@ $gap: 2rem;
     }
     
     @each $breakpointName, $breakpointValue in variables.$breakpoints {
-      $indexBreakpoint: index((variables.$breakpoints), ($breakpointName, $breakpointValue));
       $breakpointValuePx: $breakpointValue * 1px;
 
       @media screen and (min-width:#{$breakpointValuePx}){
@@ -50,13 +48,14 @@ $gap: 2rem;
           .col-#{$breakpointName}-#{$i} {
             width: calc(#{$colWidth} * #{$i});
             $parentWidth: $colWidth * $i;
-
-            @for $childIndex from $i through 1{
-              .col-#{$breakpointName}-#{$childIndex} {
-                $fullToParentRatio: math.div(12,$i);
-                $parentToChildRatio: math.div(12,$i);
-                width: math.div(100%, $parentWidth) * $childIndex * $colWidth;
-              }
+            
+            @each $breakpointNameChild, $breakpointValue in variables.$breakpoints {
+              @for $childIndex from $i through 1{
+                .col-#{$breakpointNameChild}-#{$childIndex} {
+                  $parentToChildRatio: math.div(12,$i);
+                  width: math.div(100%, $parentWidth) * $childIndex * $colWidth;
+                }
+              }  
             }
           }
         }
