@@ -21,9 +21,10 @@ const PageTemplate = ({data}) => {
                 <Row>
                     <Col classes="col-12 col-lg-6">{title}</Col>
                     <Col classes="col-12 col-lg-6">
-                        <Row>
+                        eee
+                        {/* <Row>
                             <Col classes="col-6">asd</Col>
-                        </Row>
+                        </Row> */}
                     </Col>
                 </Row>
             </Container>
