@@ -17,6 +17,7 @@
   "dependencies": {
     "gatsby": "^5.3.3",
     "gatsby-plugin-image": "^3.4.0",
+    "gatsby-plugin-purgecss": "^6.2.1",
     "gatsby-plugin-sass": "^6.4.0",
     "gatsby-plugin-sharp": "^5.4.0",
     "gatsby-source-wordpress": "^7.4.0",
