@@ -3,21 +3,11 @@
 html { 
   font-size: 10px;
   font-family: 'Raleway', sans-serif;
-}
-
-body{
-  background-color: variables.$darkgray;
-  color: variables.$white;
+  font-size: 62.5%;
 }
 
 a{
   font-family: 'Raleway', sans-serif;
   font-size: 1.5rem;
   line-height: 1.95rem;
-  color: variables.$white;
-
-  &:hover{
-    color: variables.$purple;
-    transition: all 0.3s ease;
-  }
 }
