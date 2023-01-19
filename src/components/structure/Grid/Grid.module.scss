@@ -8,6 +8,7 @@ $container-width: 136; //rem units
 $gap: 2rem;
 
 .container{
+  width: 100%;
   max-width: calc(($container-width * 1rem) + $gap);
   padding: 0 calc($containerHorizontalPadding / 2) * 1rem;
   margin: 0 auto;
