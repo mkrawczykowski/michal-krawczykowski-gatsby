@@ -23,16 +23,11 @@ const Col = ({children, classes}) => {
         const reactifySplitClass = (classToReactify) => {
             let charPosition = 0;
             let dashPosition = 0;
-            let reactifiedClass = '';
             let uppercasedClass = '';
             let removedDashClass = '';
 
             while (charPosition < classToReactify.length && dashPosition >= 0){
-                console.log('classToReactify');
-                console.log(classToReactify);
                 dashPosition = classToReactify.indexOf('-', charPosition);
-                console.log('dashPosition')
-                console.log(dashPosition)
 
                 const replaceAt = (whereToReplace, whatPosition, newValue) => {
                     return whereToReplace.substring(0, whatPosition) + newValue + whereToReplace.substring(whatPosition+1);
@@ -40,24 +35,11 @@ const Col = ({children, classes}) => {
 
                 if (dashPosition > 0){
                     uppercasedClass = replaceAt(classToReactify, dashPosition+1, classToReactify[dashPosition+1].toUpperCase());
-                    console.log('uppercasedClass');
-                    console.log(uppercasedClass);
                     removedDashClass = replaceAt(uppercasedClass, dashPosition, '');
-                    console.log('removedDashClass');
-                    console.log(removedDashClass);
                 }
                 charPosition = dashPosition + 1;
-                // console.log('position')
-                // console.log(position)
                 classToReactify = removedDashClass;
-                
-                console.log('------------');
             }
-            console.log(styles)
-            console.log('styles.removedDashClass')
-                
-            console.log(styles[removedDashClass])
-            console.log('========================================')
             return styles[removedDashClass];
         }
 
@@ -65,8 +47,6 @@ const Col = ({children, classes}) => {
     let reactifiedClasses = '';
     splitClasses.map((splitClass) => {
         reactifiedClasses += reactifySplitClass(splitClass);
-        console.log('reactifiedClasses')
-        console.log(reactifiedClasses)
         reactifiedClasses += ' ';
     })
     return(

@@ -1,0 +1,36 @@
+@use '../../../styles/global/' as global;
+
+.main-menu{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    &__item{
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    //classes from CMS
+    .button{
+        text-align: center;
+        
+        a{
+            padding: 1.3rem 2.1rem 1.3rem 2.1rem;
+            background-color: global.$gray1;
+            color: global.$white;
+            border-radius: 8px;
+            display: inline-block;
+            transition: 0.3s ease all;
+
+            &:hover{
+                background-color: global.$orange;
+                transition: 0.3s ease all;
+            }
+        }
+    }
+    .test-1{
+        border: 1px solid #ff0000;
+    }
+}
