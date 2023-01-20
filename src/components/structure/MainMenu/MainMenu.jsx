@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link, graphql, useStaticQuery} from 'gatsby';
-import * as styles from './Mainmenu.module.scss';
+import * as styles from './MainMenu.module.scss';
 
 const MainMenu = () => {
     const data = useStaticQuery(graphql`
