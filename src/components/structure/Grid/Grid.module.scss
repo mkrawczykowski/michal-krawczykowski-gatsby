@@ -1,0 +1,68 @@
+@use '../../../styles/global/variables';
+@use 'sass:math';
+
+// Grid settings
+$colWidth:  math.div(100%, 12);
+$containerHorizontalPadding: 2; //rem units
+$container-width: 136; //rem units
+$gap: 2rem;
+
+.container{
+  width: 100%;
+  max-width: calc(($container-width * 1rem) + $gap);
+  padding: 0 calc($containerHorizontalPadding / 2) * 1rem;
+  margin: 0 auto;
+
+  .row{
+    display: flex;
+    margin-left: calc($gap / 2 * -1);
+    margin-right: calc($gap / 2 * -1);
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+    .col{
+      padding-right: calc($gap / 2);
+      padding-left: calc($gap / 2);
+    }
+    //no-breakpoint classes
+    @for $i from 12 through 1{
+      
+      .col-#{$i} {
+        width: calc(#{$colWidth} * #{$i});
+        $parentWidth: $colWidth * $i;
+
+        @for $childIndex from $i through 1{
+          .col-#{$childIndex} {
+            $parentToChildRatio: math.div(12,$i);
+            width: math.div(100%, $parentWidth) * $childIndex * $colWidth;
+          }
+        }
+      }
+    }
+    
+    @each $breakpointName, $breakpointValue in variables.$breakpoints {
+      $breakpointValuePx: $breakpointValue * 1px;
+
+      @media screen and (min-width:#{$breakpointValuePx}){
+        @for $i from 12 through 1{
+          .col-#{$breakpointName}-#{$i} {
+            width: calc(#{$colWidth} * #{$i});
+            $parentWidth: $colWidth * $i;
+            
+            @each $breakpointNameChild, $breakpointValue in variables.$breakpoints {
+              @for $childIndex from $i through 1{
+                .col-#{$breakpointNameChild}-#{$childIndex} {
+                  $parentToChildRatio: math.div(12,$i);
+                  width: math.div(100%, $parentWidth) * $childIndex * $colWidth;
+                }
+              }  
+            }
+          }
+        }
+      }
+    }
+  }  
+}
+
+

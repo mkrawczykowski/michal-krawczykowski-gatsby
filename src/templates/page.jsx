@@ -1,6 +1,7 @@
 import React from 'react';
 import {graphql} from 'gatsby';
 import Layout from '../components/structure/Layout/Layout';
+import {Container, Col, Row} from '../components/structure/Grid/Grid';
 
 export const query = graphql`
     query($id: String!){
@@ -16,10 +17,16 @@ const PageTemplate = ({data}) => {
     const slug = data.wpPage.slug;
     return(
         <Layout>
-            <>
-                {title}
-            </>
-
+            <Container>
+                <Row>
+                    <Col classes="col-xs-12 col-lg-6">{title}</Col>
+                    <Col classes="col-xs-12 col-lg-6">
+                        <Row>
+                            <Col classes="col-xs-6">asd</Col>
+                        </Row>
+                    </Col>
+                </Row>
+            </Container>
         </Layout>
     )
 }

@@ -1,0 +1,32 @@
+$white: #ffffff;
+$black: #000000;
+
+$gray1: #1D2939;
+$darkblue: #1D2939;
+
+$font-main: 'Raleway', sans-serif;
+$font-secondary: 'Lato', sans-serif;
+
+$breakpoints: ("xs": 0, "sm": 576, "md": 768, "lg": 992, "xl": 1200, "2xl": 1400, "3xl": 1800);
+
+@mixin media-down($breakpoint){
+    $pixelsBreakpoint: map-get($breakpoints, $breakpoint) - 1px;
+    @media screen and (max-width: $pixelsBreakpoint){
+        @content;
+    }
+}
+
+@mixin media-up($breakpoint){
+    $pixelsBreakpoint: map-get($breakpoints, $breakpoint) + 0px;
+    @media screen and (min-width: $pixelsBreakpoint){
+        @content;
+    }
+}
+
+@mixin media-between($breakpointMin, $breakpointMax){
+    $pixelsBreakpointMin: map-get($breakpoints, $breakpointMin) + 0px;
+    $pixelsBreakpointMax: map-get($breakpoints, $breakpointMax) - 1px;
+    @media screen and (min-width: $pixelsBreakpointMin) and (max-width: $pixelsBreakpointMax) {
+        @content;
+    }
+}

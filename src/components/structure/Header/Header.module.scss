@@ -1,3 +1,28 @@
+@use '../../../styles/global/' as global;
+
 .header{
-    
+    background-color: global.$white;
+    box-shadow: 0px 4px 70px rgba(30, 40, 52, 0.08);
+    min-height: 8.4rem;
+    display: flex;
+    align-items: center;
+
+    &__main-nav{
+        display: flex;
+        justify-content: space-between;
+        
+        .header__contact-button{
+            background-color: global.$gray1;
+            color: global.$white;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 20px;
+            text-align: center;
+            border: 1px solid global.$darkblue;
+            border-radius: 8px;
+        }
+    }
+
+
 }
