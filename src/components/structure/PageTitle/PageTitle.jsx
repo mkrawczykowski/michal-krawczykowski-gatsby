@@ -3,18 +3,14 @@ import {useStaticQuery, graphql} from 'gatsby';
 import * as styles from './PageTitle.module.scss';
 import {Container, Row, Col} from '../Grid/Grid';
 
-const PageTitle = () => {
-    // const data = useStaticQuery(graphql`
-    //     query PageTitleQuery($id: String!){
-    //         wpPage(id: {eq: $id}){
-                
-    //         }
-    //     }
-    // `)
+const PageTitle = ({page}) => {
     return(
         <Container>
             <Row>
-                <Col>test</Col>
+                <Col>
+                    {page.titleACF ? <h1>{page.titleACF}</h1> : <h1>{page.title}</h1>}
+                    {page.descriptionACF ? <h3>{page.descriptionACF}</h3> : null}
+                </Col>
             </Row>
         </Container>
     )

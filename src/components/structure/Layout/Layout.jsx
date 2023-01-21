@@ -4,11 +4,11 @@ import Footer from '../Footer/Footer';
 import PageTitle from '../PageTitle/PageTitle';
 // import * as styles from './Layout.module.scss';
 
-const Layout = ({id, children}) => {
+const Layout = ({children, page}) => {
     return(
         <>
             <Header></Header>
-            <PageTitle id={id}></PageTitle>
+            <PageTitle page={page}></PageTitle>
             <main>
                 {children}
             </main>
