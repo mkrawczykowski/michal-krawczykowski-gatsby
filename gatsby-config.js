@@ -7,6 +7,11 @@ module.exports = {
     {
       resolve: 'gatsby-source-wordpress',
       options: {
+        debug: {
+          graphql: {
+            showQueryOnError: true,
+          }
+        },
         schema: {
           timeout: 100000,
         },
