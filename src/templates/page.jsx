@@ -6,27 +6,17 @@ import {Container, Col, Row} from '../components/structure/Grid/Grid';
 export const query = graphql`
     query($id: String!){
         wpPage(id: {eq: $id}){
-            slug
             title
+            id
         }
     }
 `
 
 const PageTemplate = ({data}) => {
-    const title = data.wpPage.title;
-    const slug = data.wpPage.slug;
+    const id = data.wpPage.id;
+
     return(
-        <Layout>
-            <Container>
-                <Row>
-                    <Col classes="col-xs-12 col-lg-6">{title}</Col>
-                    <Col classes="col-xs-12 col-lg-6">
-                        <Row>
-                            <Col classes="col-xs-6">asd</Col>
-                        </Row>
-                    </Col>
-                </Row>
-            </Container>
+        <Layout id={id}>
         </Layout>
     )
 }
