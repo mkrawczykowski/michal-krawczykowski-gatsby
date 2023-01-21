@@ -14,7 +14,6 @@ const Header = () => {
                     <MainMenu></MainMenu>
                 </nav>    
             </Container>
-
         </header>
     )
 }
