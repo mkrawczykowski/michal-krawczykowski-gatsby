@@ -1,6 +1,6 @@
 @use '../../../styles/global/' as global;
 
-.main-menu{
+.mainMenu{
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -12,11 +12,15 @@
         line-height: 20px;
     }
 
-    //classes from CMS
+    //----- classes from CMS ------
+
+    // added ! to make purge css ignore work: https://github.com/FullHuman/purgecss/issues/170#issuecomment-559647362
     .button{
+        /*! purgecss ignore current */
         text-align: center;
         
         a{
+            /*! purgecss ignore current */
             padding: 1.3rem 2.1rem 1.3rem 2.1rem;
             background-color: global.$gray1;
             color: global.$white;
@@ -25,6 +29,7 @@
             transition: 0.3s ease all;
 
             &:hover{
+                /*! purgecss ignore current */
                 background-color: global.$orange;
                 transition: 0.3s ease all;
             }
