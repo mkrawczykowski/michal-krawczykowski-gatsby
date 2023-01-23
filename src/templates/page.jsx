@@ -21,7 +21,6 @@ const PageTemplate = ({data}) => {
     page.titleACF = data.wpPage.PageTitle.pageTitle;
     page.descriptionACF = data.wpPage.PageTitle.pageDescription;
 
-    console.log(data);
     return(
         <Layout page={page}>
         </Layout>
