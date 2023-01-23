@@ -29,8 +29,7 @@ const MainMenu = () => {
         return(
             <>
                 <ul className={styles.mainMenu}>
-                {/* <ul> */}
-                    {   
+                    {
                         menuItems.map((menuItem) => {
                             menuItem.cssClasses.forEach(cssClass => {
                                 if (styles[cssClass]){
