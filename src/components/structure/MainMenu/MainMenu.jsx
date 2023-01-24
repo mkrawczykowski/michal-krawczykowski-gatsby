@@ -3,9 +3,6 @@ import {Link, graphql, useStaticQuery} from 'gatsby';
 import * as styles from './MainMenu.module.scss';
 
 const MainMenu = () => {
-    console.log('styles')
-    console.log(styles)
-
     const data = useStaticQuery(graphql`
         query MainMenuQuery{
             allWpMenu(filter: {locations: {eq: GATSBY_HEADER_MENU}}) {
@@ -29,8 +26,7 @@ const MainMenu = () => {
         return(
             <>
                 <ul className={styles.mainMenu}>
-                {/* <ul> */}
-                    {   
+                    {
                         menuItems.map((menuItem) => {
                             menuItem.cssClasses.forEach(cssClass => {
                                 if (styles[cssClass]){
