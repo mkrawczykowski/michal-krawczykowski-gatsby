@@ -1,11 +1,13 @@
 @use '../../../styles/global/variables';
 @use 'sass:math';
+@use 'sass:map';
 
 // Grid settings
-$colWidth:  math.div(100%, 12);
+
 $containerHorizontalPadding: 2; //rem units
 $container-width: 134.4; //rem units
 $gap: 2rem;
+$columns: ("xs": 2, "sm": 2, "md": 8, "lg": 8, "xl": 12, "2xl": 12, "3xl": 12);
 
 .container{
   width: 100%;
@@ -26,43 +28,54 @@ $gap: 2rem;
       padding-left: calc($gap / 2);
     }
     //no-breakpoint classes
-    @for $i from 12 through 1{
-      
-      .col-#{$i} {
-        width: calc(#{$colWidth} * #{$i});
-        $parentWidth: $colWidth * $i;
+    // @for $i from map.get($columns, "xs") through 1{
+    //   .col-#{$i} {
+    //     width: calc(#{$colWidth} * #{$i});
+    //     $parentWidth: $colWidth * $i;
 
-        @for $childIndex from $i through 1{
-          .col-#{$childIndex} {
-            $parentToChildRatio: math.div(12,$i);
-            width: math.div(100%, $parentWidth) * $childIndex * $colWidth;
-          }
-        }
-      }
-    }
+    //     @for $childIndex from $i through 1{
+    //       .col-#{$childIndex} {
+    //         $parentToChildRatio: math.div(12,$i);
+    //         width: math.div(100%, $parentWidth) * $childIndex * $colWidth;
+    //       }
+    //     }
+    //   }
+    // }
     
     @each $breakpointName, $breakpointValue in variables.$breakpoints {
+      $breakpointsIndex: index(variables.$breakpoints, $breakpointName $breakpointValue);
       $breakpointValuePx: $breakpointValue * 1px;
-
-      @media screen and (min-width:#{$breakpointValuePx}){
-        @for $i from 12 through 1{
-          .col-#{$breakpointName}-#{$i} {
-            width: calc(#{$colWidth} * #{$i});
-            $parentWidth: $colWidth * $i;
-            
-            @each $breakpointNameChild, $breakpointValue in variables.$breakpoints {
-              @for $childIndex from $i through 1{
-                .col-#{$breakpointNameChild}-#{$childIndex} {
-                  $parentToChildRatio: math.div(12,$i);
-                  width: math.div(100%, $parentWidth) * $childIndex * $colWidth;
+      
+      $colsNumberForBreakpoint: map.get($columns, $breakpointName);
+      $colWidth:  math.div(100%, $colsNumberForBreakpoint);
+      @if $breakpointsIndex <= $colsNumberForBreakpoint{
+        @media screen and (min-width:#{$breakpointValuePx}){
+          
+          .test{
+            border: 1px solid $breakpointsIndex;
+          }
+          @for $i from $colsNumberForBreakpoint through 1{
+            .col-#{$breakpointName}-#{$i} {
+              width: calc(#{$colWidth} * #{$i});
+              $parentWidth: $colWidth * $i;
+              
+              @each $breakpointNameChild, $breakpointValueChild in variables.$breakpoints {
+                $breakpointsIndexChild: index(variables.$breakpoints, $breakpointNameChild $breakpointValueChild);
+                @if $breakpointsIndexChild <= $breakpointsIndex{
+                  @for $childIndex from $colsNumberForBreakpoint through 1{
+                    .col-#{$breakpointNameChild}-#{$childIndex} {
+                      $parentToChildRatio: math.div($colsNumberForBreakpoint,$i);
+                      width: math.div(100%, $parentWidth) * $childIndex * $colWidth;
+                    }
+                  }   
                 }
-              }  
+              }
             }
           }
         }
       }
+
+      
     }
   }  
 }
-
-
