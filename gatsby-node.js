@@ -7,10 +7,17 @@ exports.createPages = async ({ actions, graphql }) =>{
                     slug
                 }
             }
+            allWpPost{
+                nodes{
+                    id
+                    slug
+                }
+            }
         }
     `)
 
     const pages = result.data.allWpPage.nodes;
+    const posts = result.data.allWpPost.nodes;
 
     pages.forEach(page => {
         // https://stackoverflow.com/questions/59868720/how-can-i-set-the-index-page-of-my-gatsby-site-to-be-one-of-the-dynamically-gene
@@ -29,6 +36,18 @@ exports.createPages = async ({ actions, graphql }) =>{
             }
         )
     });
+
+    posts.forEach(post => {
+        actions.createPage(
+            {
+                path: post.slug,
+                component: require.resolve('./src/templates/post.jsx'),
+                context: {
+                    id: post.id
+                }
+            }
+        )
+    })
 
     // actions.createPage(
     //     {
