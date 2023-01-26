@@ -9,10 +9,15 @@ const Header = () => {
     return(
         <header className={styles.header}>
             <Container>
-                <nav className={styles.header__mainNav}>
-                    <Link to="/"><StaticImage src="../../../images/krawczykowski-logo.svg" alt="Michael Krawczykowski's blog - logo" /></Link>
-                    <MainMenu></MainMenu>
-                </nav>    
+                <Row>
+                    <Col>
+                        <nav className={styles.header__mainNav}>
+                            <Link to="/"><StaticImage src="../../../images/krawczykowski-logo.svg" alt="Michael Krawczykowski's blog - logo" /></Link>
+                            <MainMenu></MainMenu>
+                        </nav>
+                    </Col>
+                </Row>
+                  
             </Container>
         </header>
     )
