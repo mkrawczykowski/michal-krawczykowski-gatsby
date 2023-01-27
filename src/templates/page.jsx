@@ -10,6 +10,10 @@ export const query = graphql`
                 pageDescription
                 pageTitle
             }
+            flexibleSections{
+                fieldGroupName
+                ...WYSIWYGFragmentPage
+            }
         }
     }
 `
@@ -20,9 +24,12 @@ const PageTemplate = ({data}) => {
     page.title = data.wpPage.title;
     page.titleACF = data.wpPage.PageTitle.pageTitle;
     page.descriptionACF = data.wpPage.PageTitle.pageDescription;
+    page.flexibleSections = data.wpPage.flexibleSections;
 
     return(
-        <Layout page={page}>
+        <Layout page={page} flexibleSections={flexibleSections}>
+            <Header></Header>
+            <PageTitle page={page}></PageTitle>
         </Layout>
     )
 }
