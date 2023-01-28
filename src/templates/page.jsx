@@ -1,6 +1,8 @@
 import React from 'react';
 import {graphql} from 'gatsby';
 import Layout from '../components/structure/Layout/Layout';
+import FlexibleSections from '../components/sections/_FlexibleSections/FlexibleSections';
+import PageTitle from '../components/structure/PageTitle/PageTitle';
 
 export const query = graphql`
     query($id: String!){
@@ -11,8 +13,9 @@ export const query = graphql`
                 pageTitle
             }
             flexibleSections{
-                fieldGroupName
-                ...WYSIWYGFragmentPage
+                sections{
+                    ...WYSIWYGFragmentPage    
+                }
             }
         }
     }
@@ -20,16 +23,31 @@ export const query = graphql`
 
 const PageTemplate = ({data}) => {
 
-    const page = {};
-    page.title = data.wpPage.title;
-    page.titleACF = data.wpPage.PageTitle.pageTitle;
-    page.descriptionACF = data.wpPage.PageTitle.pageDescription;
-    page.flexibleSections = data.wpPage.flexibleSections;
+    const title = data.wpPage.title;
+    const titleACF = data.wpPage.PageTitle.pageTitle;
+    const descriptionACF = data.wpPage.PageTitle.pageDescription;
+    const flexibleSections = data.wpPage.flexibleSections.sections;
 
     return(
-        <Layout page={page} flexibleSections={flexibleSections}>
-            <Header></Header>
-            <PageTitle page={page}></PageTitle>
+        <Layout>
+            <main>
+                <PageTitle title={title} titleACF={titleACF} descriptionACF={descriptionACF}></PageTitle>
+                {/* <pre>
+                    {JSON.stringify(flexibleSections, null, 2)}
+                </pre> */}
+                {
+                    flexibleSections.map((flexibleSection, flexibleSectionIndex) => {
+                        const {fieldGroupName, ...sectionData} = flexibleSection;
+                        // console.log(fieldGroupName);
+                        // console.log(sectionData.wysiwyg);
+                        
+                        return(
+                            <FlexibleSections key={flexibleSectionIndex} fieldGroupName={fieldGroupName} sectionData={sectionData}></FlexibleSections>    
+                        )
+                    })
+                }
+                
+            </main>
         </Layout>
     )
 }
