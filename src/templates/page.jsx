@@ -14,7 +14,7 @@ export const query = graphql`
             }
             flexibleSections{
                 sections{
-                    ...WYSIWYGFragmentPage    
+                    ...WYSIWYGFragmentPage   
                 }
             }
         }
@@ -36,8 +36,6 @@ const PageTemplate = ({data}) => {
                     //optional chaining
                     flexibleSections?.map((flexibleSection, flexibleSectionIndex) => {
                         const {fieldGroupName, ...sectionData} = flexibleSection;
-                        // console.log(fieldGroupName);
-                        // console.log(sectionData.wysiwyg);
                         
                         return(
                             <FlexibleSections key={flexibleSectionIndex} fieldGroupName={fieldGroupName} sectionData={sectionData}></FlexibleSections>    
