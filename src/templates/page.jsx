@@ -32,11 +32,9 @@ const PageTemplate = ({data}) => {
         <Layout>
             <main>
                 <PageTitle title={title} titleACF={titleACF} descriptionACF={descriptionACF}></PageTitle>
-                {/* <pre>
-                    {JSON.stringify(flexibleSections, null, 2)}
-                </pre> */}
                 {
-                    flexibleSections.map((flexibleSection, flexibleSectionIndex) => {
+                    //optional chaining
+                    flexibleSections?.map((flexibleSection, flexibleSectionIndex) => {
                         const {fieldGroupName, ...sectionData} = flexibleSection;
                         // console.log(fieldGroupName);
                         // console.log(sectionData.wysiwyg);
