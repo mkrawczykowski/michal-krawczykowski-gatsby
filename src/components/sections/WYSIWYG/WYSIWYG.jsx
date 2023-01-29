@@ -36,3 +36,10 @@ export const pageQuery = graphql`
         fieldGroupName
     }
 `
+
+export const pageQuerySection = graphql`
+    fragment WYSIWYGFragmentPageSection on WpPage_Flexiblesections_Sections_Section_Sections_Wysiwyg{
+        wysiwyg
+        fieldGroupName
+    }
+`

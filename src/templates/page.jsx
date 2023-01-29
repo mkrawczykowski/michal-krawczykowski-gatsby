@@ -14,7 +14,14 @@ export const query = graphql`
             }
             flexibleSections{
                 sections{
-                    ...WYSIWYGFragmentPage   
+                    ...WYSIWYGFragmentPage
+                    ... on WpPage_Flexiblesections_Sections_Section{
+                    fieldGroupName
+                        sections{
+                            ...WYSIWYGFragmentPageSection
+                        }
+                    }
+                    
                 }
             }
         }
@@ -27,9 +34,12 @@ const PageTemplate = ({data}) => {
     const titleACF = data.wpPage.PageTitle.pageTitle;
     const descriptionACF = data.wpPage.PageTitle.pageDescription;
     const flexibleSections = data.wpPage.flexibleSections.sections;
+    // console.log('flexibleSections');
+    // console.log(flexibleSections);
 
     return(
         <Layout>
+            <pre>{JSON.stringify(data, null, 2)}</pre>
             <main>
                 <PageTitle title={title} titleACF={titleACF} descriptionACF={descriptionACF}></PageTitle>
                 {
