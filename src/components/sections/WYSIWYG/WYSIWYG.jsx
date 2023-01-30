@@ -7,7 +7,6 @@ const WYSIWYG = ({data}) => {
     const wysiwyg = data.wysiwyg;
 
     return(
-        <section className={styles.WYSIWYG}>
             <Container>
                 <Row>
                     <Col classes="col-xs-2 col-sm-1 col-2xl-1"></Col>
@@ -17,7 +16,6 @@ const WYSIWYG = ({data}) => {
                     <Col classes="col-xs-2 col-sm-1 col-2xl-1"></Col>
                 </Row>
             </Container>
-        </section>
     )
 }
 
