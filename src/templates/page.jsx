@@ -42,16 +42,16 @@ const PageTemplate = ({data}) => {
             <pre>{JSON.stringify(data, null, 2)}</pre>
             <main>
                 <PageTitle title={title} titleACF={titleACF} descriptionACF={descriptionACF}></PageTitle>
-                {
-                    //optional chaining
-                    flexibleSections?.map((flexibleSection, flexibleSectionIndex) => {
-                        const {fieldGroupName, ...sectionData} = flexibleSection;
+                <FlexibleSections sections={flexibleSections}></FlexibleSections>
+                    {/* //optional chaining
+                    // flexibleSections?.map((flexibleSection, flexibleSectionIndex) => {
+                    //     const {fieldGroupName, ...sectionData} = flexibleSection;
                         
-                        return(
-                            <FlexibleSections key={flexibleSectionIndex} fieldGroupName={fieldGroupName} sectionData={sectionData}></FlexibleSections>    
-                        )
-                    })
-                }
+                    //     return(
+                    //         <FlexibleSections key={flexibleSectionIndex} flexibleSection={flexibleSection} fieldGroupName={fieldGroupName} sectionData={sectionData}></FlexibleSections>    
+                    //     )
+                    // }) 
+                }*/}
                 
             </main>
         </Layout>
