@@ -15,6 +15,13 @@ export const query = graphql`
             flexibleSections{
                 sections{
                     ...WYSIWYGFragmentPost
+                    ... on WpPost_Flexiblesections_Sections_Section{
+                    fieldGroupName
+                        sections{
+                            ...WYSIWYGFragmentPostSection
+                        }
+                    }
+                    
                 }
             }
         }
@@ -30,18 +37,21 @@ const PostTemplate = ({data}) => {
 
     return(
         <Layout>
+            <pre>{JSON.stringify(data, null, 2)}</pre>
             <main>
                 <PageTitle title={title} titleACF={titleACF} descriptionACF={descriptionACF}></PageTitle>
                 {
-                    //optional chaining
-                    flexibleSections?.map((flexibleSection, flexibleSectionIndex) => {
-                        const {fieldGroupName, ...sectionData} = flexibleSection;
-                        
-                        return(
-                            <FlexibleSections key={flexibleSectionIndex} fieldGroupName={fieldGroupName} sectionData={sectionData}></FlexibleSections>    
-                        )
-                    })
+                    flexibleSections ? <FlexibleSections sections={flexibleSections}></FlexibleSections> : null
                 }
+                    {/* //optional chaining
+                    // flexibleSections?.map((flexibleSection, flexibleSectionIndex) => {
+                    //     const {fieldGroupName, ...sectionData} = flexibleSection;
+                        
+                    //     return(
+                    //         <FlexibleSections key={flexibleSectionIndex} flexibleSection={flexibleSection} fieldGroupName={fieldGroupName} sectionData={sectionData}></FlexibleSections>    
+                    //     )
+                    // }) 
+                }*/}
                 
             </main>
         </Layout>
