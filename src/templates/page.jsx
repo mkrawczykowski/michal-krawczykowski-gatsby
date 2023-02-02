@@ -15,6 +15,7 @@ export const query = graphql`
             flexibleSections{
                 sections{
                     ...WYSIWYGFragmentPage
+                    ...ListOfPostsFragmentPage
                     ... on WpPage_Flexiblesections_Sections_Section{
                     fieldGroupName
                         sections{
@@ -28,7 +29,7 @@ export const query = graphql`
     }
 `
 
-const PageTemplate = ({data}) => {
+const PageTemplate = ({data, posts}) => {
 
     const title = data.wpPage.title;
     const titleACF = data.wpPage.PageTitle.pageTitle;

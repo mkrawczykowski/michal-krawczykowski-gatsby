@@ -15,6 +15,7 @@ export const query = graphql`
             flexibleSections{
                 sections{
                     ...WYSIWYGFragmentPost
+                    ...ListOfPostsFragmentPost
                     ... on WpPost_Flexiblesections_Sections_Section{
                     fieldGroupName
                         sections{

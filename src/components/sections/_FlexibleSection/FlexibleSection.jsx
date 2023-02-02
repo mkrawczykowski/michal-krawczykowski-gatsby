@@ -1,5 +1,6 @@
 import React from 'react';
 import WYSIWYG from '../WYSIWYG/WYSIWYG';
+import ListOfPosts from '../ListOfPosts/ListOfPosts';
 
 const FlexibleSection = ({section}) => {
     let sections = [];
@@ -25,6 +26,8 @@ const FlexibleSection = ({section}) => {
     switch(sectionName){
         case 'Wysiwyg':
             sections.push(<WYSIWYG data={section} />)
+        case 'ListOfPosts':
+            sections.push(<ListOfPosts data={section} />)
         case 'Section':
             generateNestedSections();
             break;
