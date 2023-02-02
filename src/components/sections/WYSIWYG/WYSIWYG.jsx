@@ -10,8 +10,7 @@ const WYSIWYG = ({data}) => {
             <Container>
                 <Row>
                     <Col classes="col-xs-2 col-sm-1 col-2xl-1"></Col>
-                    <Col classes="col-xs-2 col-sm-6 col-2xl-10">
-                        <div dangerouslySetInnerHTML={{__html: wysiwyg}}></div>
+                    <Col classes="col-xs-2 col-sm-6 col-2xl-10" innerHTML={{__html: wysiwyg}}>
                     </Col>
                     <Col classes="col-xs-2 col-sm-1 col-2xl-1"></Col>
                 </Row>
@@ -37,6 +36,13 @@ export const pageQuery = graphql`
 
 export const pageQuerySection = graphql`
     fragment WYSIWYGFragmentPageSection on WpPage_Flexiblesections_Sections_Section_Sections_Wysiwyg{
+        wysiwyg
+        fieldGroupName
+    }
+`
+
+export const postQuerySection = graphql`
+    fragment WYSIWYGFragmentPostSection on WpPost_Flexiblesections_Sections_Section_Sections_Wysiwyg{
         wysiwyg
         fieldGroupName
     }
