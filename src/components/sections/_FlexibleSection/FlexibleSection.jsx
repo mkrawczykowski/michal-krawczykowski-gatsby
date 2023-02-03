@@ -22,11 +22,11 @@ const FlexibleSection = ({section}) => {
     }
 
     let sectionName = section.fieldGroupName.substring(section.fieldGroupName.lastIndexOf('_')+1, section.fieldGroupName.length);
-
+    console.log(sectionName);
     switch(sectionName){
         case 'Wysiwyg':
             sections.push(<WYSIWYG data={section} />)
-        case 'ListOfPosts':
+        case 'Listofposts':
             sections.push(<ListOfPosts data={section} />)
         case 'Section':
             generateNestedSections();
