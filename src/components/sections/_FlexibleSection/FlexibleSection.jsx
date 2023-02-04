@@ -2,7 +2,7 @@ import React from 'react';
 import WYSIWYG from '../WYSIWYG/WYSIWYG';
 import ListOfPosts from '../ListOfPosts/ListOfPosts';
 
-const FlexibleSection = ({section}) => {
+const FlexibleSection = ({section, postCategories}) => {
     let sections = [];
     const generateNestedSections = () => {
         if (section.sections){
@@ -17,17 +17,19 @@ const FlexibleSection = ({section}) => {
         return(
             sections.map(section => {
                 return section;
-            })    
+            })
         )
     }
 
     let sectionName = section.fieldGroupName.substring(section.fieldGroupName.lastIndexOf('_')+1, section.fieldGroupName.length);
-    console.log(sectionName);
+    
     switch(sectionName){
         case 'Wysiwyg':
             sections.push(<WYSIWYG data={section} />)
+            break;
         case 'Listofposts':
-            sections.push(<ListOfPosts data={section} />)
+            sections.push(<ListOfPosts postCategories={postCategories} data={section} />)
+            break;
         case 'Section':
             generateNestedSections();
             break;

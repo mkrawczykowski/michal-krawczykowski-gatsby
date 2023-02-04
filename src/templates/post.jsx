@@ -25,6 +25,11 @@ export const query = graphql`
                     
                 }
             }
+            categories {
+                nodes {
+                    id
+                }
+            }
         }
     }
 `
@@ -35,6 +40,9 @@ const PostTemplate = ({data}) => {
     const titleACF = data.wpPost.PageTitle.pageTitle;
     const descriptionACF = data.wpPost.PageTitle.pageDescription;
     const flexibleSections = data.wpPost.flexibleSections.sections;
+    const postCategories = data.wpPost.categories.nodes;
+    console.log('=======postCategories===========')
+    console.log(postCategories)
 
     return(
         <Layout>
@@ -42,7 +50,7 @@ const PostTemplate = ({data}) => {
             <main>
                 <PageTitle title={title} titleACF={titleACF} descriptionACF={descriptionACF}></PageTitle>
                 {
-                    flexibleSections ? <FlexibleSections sections={flexibleSections}></FlexibleSections> : null
+                    flexibleSections ? <FlexibleSections sections={flexibleSections} postCategories={postCategories}></FlexibleSections> : null
                 }
                     {/* //optional chaining
                     // flexibleSections?.map((flexibleSection, flexibleSectionIndex) => {
@@ -53,7 +61,6 @@ const PostTemplate = ({data}) => {
                     //     )
                     // }) 
                 }*/}
-                
             </main>
         </Layout>
     )

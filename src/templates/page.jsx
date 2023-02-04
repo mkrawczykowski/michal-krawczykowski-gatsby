@@ -29,7 +29,7 @@ export const query = graphql`
     }
 `
 
-const PageTemplate = ({data, posts}) => {
+const PageTemplate = ({data}) => {
 
     const title = data.wpPage.title;
     const titleACF = data.wpPage.PageTitle.pageTitle;
