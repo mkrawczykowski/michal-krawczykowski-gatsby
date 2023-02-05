@@ -6,56 +6,40 @@
  * @return {Boolean} [true if the post is in category/categories from postIds]
  */
     
-    const isInCategory = (categoriesIds, postIds) => {
-        console.log('-----------------')
-        console.log('categoriesIds')
-        console.log(categoriesIds)
-        console.log('postIds')
-        console.log(postIds)
-        let result = false;
+export const isInCategory = (categoriesIds, postIds) => {
+    let result = false;
 
-
-        if (Array.isArray(categoriesIds)){
-            console.log('categoriesIds is Array')
-            if (Array.isArray(postIds)){
-                console.log('postIds is Array')
-                categoriesIds.forEach(categoryId => {
-                    if (postIds.includes(categoryId)){
-                        result = true;
-                    }
-                })
-            }
-            if (!Array.isArray(postIds)){
-                console.log('postIds is NOT Array')
-                categoriesIds.forEach(categoryId => {
-                    if (categoryId == postIds){
-                        result = true;
-                    }
-                })
-            }
+    if (Array.isArray(categoriesIds)){
+        if (Array.isArray(postIds)){      
+            categoriesIds.forEach(categoryId => {
+                if (postIds.includes(categoryId)){
+                    result = true;
+                }
+            })
         }
-
-
-
-        if (!Array.isArray(categoriesIds)){
-            console.log('categoriesIds is NOT Array')
-            if (Array.isArray(postIds)){
-                console.log('postIds is Array')
-                postIds.forEach(postId => {
-                    if (postId == categoriesIds){
-                        result = true;
-                    }
-                })
-            }
-            if (!Array.isArray(postIds)){
-                console.log('postIds is NOT Array')
-                result = categoriesIds == postIds;
-            }
+        if (!Array.isArray(postIds)){
+            categoriesIds.forEach(categoryId => {
+                if (categoryId == postIds){
+                    result = true;
+                }
+            })
         }
-
-
-
-        console.log(result)
-        return result;
-        
     }
+
+
+
+    if (!Array.isArray(categoriesIds)){
+        if (Array.isArray(postIds)){
+            postIds.forEach(postId => {
+                if (postId == categoriesIds){
+                    result = true;
+                }
+            })
+        }
+        if (!Array.isArray(postIds)){
+            result = categoriesIds == postIds;
+        }
+    }
+
+    return result;
+}

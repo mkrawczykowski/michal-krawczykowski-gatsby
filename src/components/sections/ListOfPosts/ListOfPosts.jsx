@@ -1,32 +1,10 @@
 import React from 'react';
 import {useStaticQuery, graphql} from 'gatsby';
 import {Container, Row, Col} from '../../structure/Grid/Grid';
+import {isInCategory} from '../../../inc/helpers';
 import Card from '../../partials/Card/Card';
 
 const ListOfPosts = ({data, postCategories}) => {
-
-
-
-    isInCategory('a', ['a', 'b', 'c'])
-    isInCategory('a', ['a'])
-    isInCategory(['a', 'b', 'c'], 'a')
-    isInCategory(['a'], 'a')
-    isInCategory(1, [1, 2, 3])
-    isInCategory(1, [1])
-    isInCategory([1, 2, 3], 1)
-    isInCategory([1], 1)
-
-    console.log('==== FALSES ====')
-    isInCategory(['a'], 'b')
-    isInCategory(['b'], 'a')
-    isInCategory(['a', 'b', 'c'], 'd')
-    isInCategory('d', ['a', 'b', 'c'])
-    isInCategory(4, [1, 2, 3])
-    isInCategory(4, [1])
-    isInCategory([1, 2, 3], 4)
-    isInCategory([1], 4)
-
-
     const allPostsQuery = useStaticQuery(graphql`
         query blogPosts{
             allWpPost(limit: 1000) {
