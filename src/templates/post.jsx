@@ -34,8 +34,11 @@ export const query = graphql`
     }
 `
 
-const PostTemplate = ({data}) => {
+const PostTemplate = ({data, pageContext }) => {
 
+    const postID = pageContext.id;
+    console.log(')))))))))))))))))))))))))))))')
+    console.log(postID);
     const title = data.wpPost.title;
     const titleACF = data.wpPost.PageTitle.pageTitle;
     const descriptionACF = data.wpPost.PageTitle.pageDescription;
@@ -50,7 +53,7 @@ const PostTemplate = ({data}) => {
             <main>
                 <PageTitle title={title} titleACF={titleACF} descriptionACF={descriptionACF}></PageTitle>
                 {
-                    flexibleSections ? <FlexibleSections sections={flexibleSections} postCategories={postCategories}></FlexibleSections> : null
+                    flexibleSections ? <FlexibleSections sections={flexibleSections} postCategories={postCategories} postID={postID}></FlexibleSections> : null
                 }
                     {/* //optional chaining
                     // flexibleSections?.map((flexibleSection, flexibleSectionIndex) => {

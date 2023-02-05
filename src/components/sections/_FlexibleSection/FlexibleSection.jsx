@@ -2,12 +2,12 @@ import React from 'react';
 import WYSIWYG from '../WYSIWYG/WYSIWYG';
 import ListOfPosts from '../ListOfPosts/ListOfPosts';
 
-const FlexibleSection = ({section, postCategories}) => {
+const FlexibleSection = ({section, postCategories, postID}) => {
     let sections = [];
     const generateNestedSections = () => {
         if (section.sections){
             section.sections.map(nestedSection => {
-            sections.push(<FlexibleSection section={nestedSection} />) 
+            sections.push(<FlexibleSection section={nestedSection} postID={postID} postCategories={postCategories} />) 
         });
         }
 
@@ -28,7 +28,7 @@ const FlexibleSection = ({section, postCategories}) => {
             sections.push(<WYSIWYG data={section} />)
             break;
         case 'Listofposts':
-            sections.push(<ListOfPosts postCategories={postCategories} data={section} />)
+            sections.push(<ListOfPosts postCategories={postCategories} data={section} postID={postID} />)
             break;
         case 'Section':
             generateNestedSections();
