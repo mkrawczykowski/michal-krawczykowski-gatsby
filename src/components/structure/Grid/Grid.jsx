@@ -17,7 +17,7 @@ const Row = ({children}) => {
     )
 }
 
-const Col = ({children, classes}) => {
+const Col = ({children, classes, innerHTML}) => {
     const splitClasses = classes.split(' ');
 
         const reactifySplitClass = (classToReactify) => {
@@ -50,8 +50,10 @@ const Col = ({children, classes}) => {
         reactifiedClasses += ' ';
     })
     return(
-        <div className={[styles.col, reactifiedClasses].join(' ')}>
-            {children}
+        <div className={[styles.col, reactifiedClasses].join(' ')} dangerouslySetInnerHTML={innerHTML}>
+            {
+                innerHTML ? null : children
+            }
         </div>
     )
 }

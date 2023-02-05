@@ -1,6 +1,8 @@
 import React from 'react';
 import {graphql} from 'gatsby';
 import Layout from '../components/structure/Layout/Layout';
+import FlexibleSections from '../components/sections/_FlexibleSections/FlexibleSections';
+import PageTitle from '../components/structure/PageTitle/PageTitle';
 
 export const query = graphql`
     query($id: String!){
@@ -10,19 +12,51 @@ export const query = graphql`
                 pageDescription
                 pageTitle
             }
+            flexibleSections{
+                sections{
+                    ...WYSIWYGFragmentPage
+                    ...ListOfPostsFragmentPage
+                    ... on WpPage_Flexiblesections_Sections_Section{
+                    fieldGroupName
+                        sections{
+                            ...WYSIWYGFragmentPageSection
+                        }
+                    }
+                    
+                }
+            }
         }
     }
 `
 
 const PageTemplate = ({data}) => {
 
-    const page = {};
-    page.title = data.wpPage.title;
-    page.titleACF = data.wpPage.PageTitle.pageTitle;
-    page.descriptionACF = data.wpPage.PageTitle.pageDescription;
+    const title = data.wpPage.title;
+    const titleACF = data.wpPage.PageTitle.pageTitle;
+    const descriptionACF = data.wpPage.PageTitle.pageDescription;
+    const flexibleSections = data.wpPage.flexibleSections.sections;
+    // console.log('flexibleSections');
+    // console.log(flexibleSections);
 
     return(
-        <Layout page={page}>
+        <Layout>
+            <pre>{JSON.stringify(data, null, 2)}</pre>
+            <main>
+                <PageTitle title={title} titleACF={titleACF} descriptionACF={descriptionACF}></PageTitle>
+                {
+                    flexibleSections ? <FlexibleSections sections={flexibleSections}></FlexibleSections> : null
+                }
+                    {/* //optional chaining
+                    // flexibleSections?.map((flexibleSection, flexibleSectionIndex) => {
+                    //     const {fieldGroupName, ...sectionData} = flexibleSection;
+                        
+                    //     return(
+                    //         <FlexibleSections key={flexibleSectionIndex} flexibleSection={flexibleSection} fieldGroupName={fieldGroupName} sectionData={sectionData}></FlexibleSections>    
+                    //     )
+                    // }) 
+                }*/}
+                
+            </main>
         </Layout>
     )
 }
