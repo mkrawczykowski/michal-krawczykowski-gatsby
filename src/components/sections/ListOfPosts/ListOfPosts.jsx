@@ -1,7 +1,7 @@
 import React from 'react';
 import {useStaticQuery, graphql} from 'gatsby';
 import {Container, Row, Col} from '../../structure/Grid/Grid';
-import {isInCategory} from '../../../inc/helpers';
+import {isInCategory, getPosts} from '../../../inc/helpers';
 import Card from '../../partials/Card/Card';
 
 const ListOfPosts = ({data, postCategories, postID}) => {
@@ -35,7 +35,7 @@ const ListOfPosts = ({data, postCategories, postID}) => {
 
     const dSourceOfPosts = data.sourceOfPosts;
     const dSourceCategories = data.sourceCategories;
-    const dPostAllCategories = postCategories;
+    let dPostAllCategories = postCategories.map(dPostAllCategory => dPostAllCategory.id);
     const dPostID = postID;
     let sourceCategories = [];
     const qAllPosts = allPostsQuery.allWpPost.nodes;
@@ -43,58 +43,62 @@ const ListOfPosts = ({data, postCategories, postID}) => {
         return qAllCategory.id;
     });
 
+    console.log('getPosts')
+    console.log(getPosts)
+
     switch (dSourceOfPosts){
         case 'Selected category(ies)':
-            console.log('Selected category(ies)')
-            sourceCategories = dSourceCategories.map(dSourceCategory => sourceCategories.push(dSourceCategory.id));
+            console.log('selected cats')
+            sourceCategories = dSourceCategories.map(dSourceCategory => dSourceCategory.id);
         break;
         case 'All categories':
-            console.log('All categories')
-            sourceCategories = qAllCategories.map(qAllCategory => sourceCategories.push(qAllCategory.id));
+            console.log('all cats')
+            console.log('qAllCategories')
+            console.log(qAllCategories)
+            console.log('dPostAllCategories')
+            console.log(dPostAllCategories)
+            console.log('dPostID')
+            console.log(dPostID)
+            qAllCategories.forEach(qAllCategory => {
+                console.log('----qAllCategory----');
+                console.log(qAllCategory);
+                sourceCategories.push(qAllCategory);
+            });
+            console.log('sourceCategories')
+            console.log(sourceCategories)
         break;
         case 'Current post\'s category(ies)':
-            console.log('current')
+            console.log('current cats')
             if (dPostAllCategories){
-                sourceCategories = dPostAllCategories.map(dPostAllCategory => {
-                   return dPostAllCategory.id;
-                })
+                qAllCategories.forEach(qAllCategory => {
+                    console.log('----qAllCategory----');
+                    console.log(qAllCategory);
+                    if (isInCategory(dPostAllCategories, qAllCategory)){
+                        console.log('isInCategory(dPostAllCategories, qAllCategory)')
+                        console.log(isInCategory(dPostAllCategories, qAllCategory))
+                        sourceCategories.push(qAllCategory);
+                    }   
+                });
             }
             if (!dPostAllCategories){
                 sourceCategories = 0;
             }
         break;
     }
-    console.log('sourceCategories')
-    console.log(sourceCategories)
-    console.log('qAllCategories')
-    console.log(qAllCategories)
-    console.log('isInCategory(sourceCategories, qAllCategories)')
-    console.log(isInCategory(sourceCategories, qAllCategories))
-    console.log('=========dSourceCategories==========');
-    console.log(dSourceCategories);
 
-    let postsToPrint = [];;
+    let postsToPrint = [];
     qAllPosts.forEach(qAllPost => {
-        console.log('qAllPost');
-        console.log(qAllPost.categories.nodes);
         let qAllPostCategories = qAllPost.categories.nodes.map(qAllPostcategory => {
             return qAllPostcategory.id;
         })
-        console.log('qAllPostCategories')
-        console.log(qAllPostCategories)
-        // isInCategory(sourceCategories, qAllPost)
-        console.log(isInCategory(sourceCategories, qAllPostCategories));
+        if (qAllPost.id != postID){
         if (isInCategory(sourceCategories, qAllPostCategories)){
-            console.log(qAllPosts);
-            if (dPostID != qAllPost.id){
-                postsToPrint.push(qAllPost);    
-            }
+            postsToPrint.push(qAllPost);
+        }
         }
     })
-
-    console.log('postsToPrint');
-    console.log(postsToPrint);
-
+    console.log('postsToPrint')
+    console.log(postsToPrint)
     return(
         <Container>
             <Row>
