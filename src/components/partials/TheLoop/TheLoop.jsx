@@ -1,5 +1,6 @@
 import React from 'react';
 import {useStaticQuery, graphql} from 'gatsby';
+import ThePost from '../ThePost/ThePost';
 import {isInCategory} from '../../../inc/helpers';
 
 const TheLoop = ({categories, omitPostId}) => {
@@ -47,7 +48,7 @@ const TheLoop = ({categories, omitPostId}) => {
             if (allPost.id != omitPostId && isInCategory(categories, postCategories)){
                 console.log('allPost.id != omitPostId && isInCategory')
                 return(
-                    <h2>{allPost.title}</h2>
+                    <ThePost post={allPost}></ThePost>
                 )
             }
         })
