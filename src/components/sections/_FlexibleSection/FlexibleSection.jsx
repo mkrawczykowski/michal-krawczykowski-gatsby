@@ -7,8 +7,8 @@ const FlexibleSection = ({section, postCategories, postID}) => {
     const generateNestedSections = () => {
         if (section.sections){
             section.sections.map(nestedSection => {
-            sections.push(<FlexibleSection section={nestedSection} postID={postID} postCategories={postCategories} />) 
-        });
+                sections.push(<FlexibleSection section={nestedSection} postID={postID} postCategories={postCategories} />) 
+            });
         }
 
     }

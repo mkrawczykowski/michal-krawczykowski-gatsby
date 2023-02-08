@@ -46,7 +46,7 @@ export const isInCategory = (categoriesIds, postIds) => {
 
 /**
  * betterDate converts date to human-readable format
- * @param  {string} date [date, e.g. 2020-05-12T23:50:21.817Z]
+ * @param  {string} [date, e.g. 2020-05-12T23:50:21.817Z]
  * @return {string} [true if the post is in category/categories from postIds]
  */
 export const betterDate = (date) => {
