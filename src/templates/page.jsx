@@ -40,22 +40,11 @@ const PageTemplate = ({data}) => {
 
     return(
         <Layout>
-            <pre>{JSON.stringify(data, null, 2)}</pre>
             <main>
                 <PageTitle title={title} titleACF={titleACF} descriptionACF={descriptionACF}></PageTitle>
                 {
                     flexibleSections ? <FlexibleSections sections={flexibleSections}></FlexibleSections> : null
                 }
-                    {/* //optional chaining
-                    // flexibleSections?.map((flexibleSection, flexibleSectionIndex) => {
-                    //     const {fieldGroupName, ...sectionData} = flexibleSection;
-                        
-                    //     return(
-                    //         <FlexibleSections key={flexibleSectionIndex} flexibleSection={flexibleSection} fieldGroupName={fieldGroupName} sectionData={sectionData}></FlexibleSections>    
-                    //     )
-                    // }) 
-                }*/}
-                
             </main>
         </Layout>
     )
