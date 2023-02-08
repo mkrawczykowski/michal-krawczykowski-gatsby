@@ -37,15 +37,11 @@ export const query = graphql`
 const PostTemplate = ({data, pageContext }) => {
 
     const postID = pageContext.id;
-    console.log(')))))))))))))))))))))))))))))')
-    console.log(postID);
     const title = data.wpPost.title;
     const titleACF = data.wpPost.PageTitle.pageTitle;
     const descriptionACF = data.wpPost.PageTitle.pageDescription;
     const flexibleSections = data.wpPost.flexibleSections.sections;
     const postCategories = data.wpPost.categories.nodes;
-    console.log('=======postCategories===========')
-    console.log(postCategories)
 
     return(
         <Layout>
