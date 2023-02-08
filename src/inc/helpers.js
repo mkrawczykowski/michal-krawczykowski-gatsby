@@ -43,3 +43,15 @@ export const isInCategory = (categoriesIds, postIds) => {
 
     return result;
 }
+
+/**
+ * betterDate converts date to human-readable format
+ * @param  {string} date [date, e.g. 2020-05-12T23:50:21.817Z]
+ * @return {string} [true if the post is in category/categories from postIds]
+ */
+export const betterDate = (date) => {
+    const dateOptions = { year: 'numeric', month: '2-digit', day: '2-digit' };
+    const betterDate = new Date(date).toLocaleDateString('pl-PL', dateOptions).replaceAll('-', '.');
+
+    return betterDate;
+}
