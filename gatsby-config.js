@@ -3,6 +3,9 @@ module.exports = {
     title: `michal-krawczykowski-gatsby`,
     siteUrl: `https://www.yourdomain.tld`
   },
+  flags: {
+    DEV_SSR: true,
+  },
   plugins: [
     {
       resolve: 'gatsby-source-wordpress',
