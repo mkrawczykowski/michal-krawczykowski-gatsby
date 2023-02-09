@@ -3,9 +3,9 @@
 @use 'sass:map';
 
 // Grid settings
-$containerHorizontalPadding: 2; //rem units
+$containerHorizontalPadding: 3.4; //rem units
 $container-width: 134.4; //rem units
-$gap: 2rem;
+$gap: 3.4rem;
 $columns: ("xs": 2, "sm": 2, "md": 8, "lg": 8, "xl": 12, "2xl": 12, "3xl": 12);
 
 .container{
@@ -60,8 +60,6 @@ $columns: ("xs": 2, "sm": 2, "md": 8, "lg": 8, "xl": 12, "2xl": 12, "3xl": 12);
           }
         }
       }
-
-      
     }
   }  
 }
