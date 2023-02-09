@@ -1,6 +1,7 @@
 import React from 'react';
 import {useStaticQuery, graphql} from 'gatsby';
 import {Container, Row, Col} from '../../structure/Grid/Grid';
+import * as styles from './ListOfPosts.module.scss';
 import TheLoop from '../../partials/TheLoop/TheLoop';
 
 const ListOfPosts = ({data, postCategories, postID}) => {
@@ -13,7 +14,8 @@ const ListOfPosts = ({data, postCategories, postID}) => {
             }
         }
     `)
-
+    
+    const dSectionsHeading = data.sectionsHeading;
     const dSourceOfPosts = data.sourceOfPosts;
     const dSourceCategories = data.sourceCategories;
     let sourceCategories = [];
@@ -40,10 +42,11 @@ const ListOfPosts = ({data, postCategories, postID}) => {
     return(
         <Container>
             <Row>
-                <Col classes="col-xs-2 col-sm-1">
-                    {
-                        <TheLoop categories={sourceCategories} omitPostId={postID}></TheLoop>
-                    }
+                <Col classes="col-xs-2 col-sm-2">
+                        <>
+                            {dSectionsHeading ? <h2 className={styles.listOfPosts__sectionTitle}>{dSectionsHeading}</h2> : null}
+                            <TheLoop categories={sourceCategories} omitPostId={postID}></TheLoop>
+                        </>
                 </Col>
             </Row>
         </Container>

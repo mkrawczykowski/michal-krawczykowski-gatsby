@@ -1,0 +1,12 @@
+@use '../../../styles/global/variables';
+
+.listOfPosts{
+    &__sectionTitle{
+        font-style: normal;
+        font-weight: 800;
+        font-size: 1.69rem;
+        line-height: 130%;
+        letter-spacing: -0.07rem;
+        margin: 0 0 2.7rem 0
+    }
+}
