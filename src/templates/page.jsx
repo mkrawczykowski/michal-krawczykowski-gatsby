@@ -18,8 +18,10 @@ export const query = graphql`
                     ...ListOfPostsFragmentPage
                     ... on WpPage_Flexiblesections_Sections_Section{
                     fieldGroupName
+                    backgroundColor
                         sections{
                             ...WYSIWYGFragmentPageSection
+                            ...ListOfPostsFragmentPageSection
                         }
                     }
                     

@@ -3,16 +3,33 @@
 @use 'sass:map';
 
 // Grid settings
-$containerHorizontalPadding: 2; //rem units
+$containerHorizontalPadding: 3.4; //rem units
 $container-width: 134.4; //rem units
-$gap: 2rem;
+$containerWidths: ("xs": 134.4, "sm": 134.4, "md": 66.60, "lg": 134.4, "xl": 134.4, "2xl": 134.4, "3xl": 134.4); //rem units
+$gap: 3.4rem;
 $columns: ("xs": 2, "sm": 2, "md": 8, "lg": 8, "xl": 12, "2xl": 12, "3xl": 12);
+
+
+// @each $breakpointName, $breakpointValue in variables.$breakpoints {
+//   $breakpointValuePx: $breakpointValue * 1px;
+//   $containerWidthForBreakpoint: map.get($containerWidths, $breakpointName);
+//     @media screen and (min-width:#{$breakpointValuePx}){
+//       max-width: calc(($containerWidthForBreakpoint * 1rem) + $gap);
+//     }
+// }
 
 .container{
   width: 100%;
-  max-width: calc(($container-width * 1rem) + $gap);
   padding: 0 calc($containerHorizontalPadding / 2) * 1rem;
   margin: 0 auto;
+
+  @each $breakpointName, $breakpointValue in variables.$breakpoints {
+    $breakpointValuePx: $breakpointValue * 1px;
+    $containerWidthForBreakpoint: map.get($containerWidths, $breakpointName);
+      @media screen and (min-width:#{$breakpointValuePx}){
+        max-width: calc(($containerWidthForBreakpoint * 1rem) + $gap);
+      }
+  }
 
   .row{
     display: flex;
@@ -36,10 +53,6 @@ $columns: ("xs": 2, "sm": 2, "md": 8, "lg": 8, "xl": 12, "2xl": 12, "3xl": 12);
       $colWidth:  math.div(100%, $colsNumberForBreakpoint);
       @if $breakpointsIndex <= $colsNumberForBreakpoint{
         @media screen and (min-width:#{$breakpointValuePx}){
-          
-          .test{
-            border: 1px solid $breakpointsIndex;
-          }
           @for $i from $colsNumberForBreakpoint through 1{
             .col-#{$breakpointName}-#{$i} {
               width: calc(#{$colWidth} * #{$i});
@@ -60,8 +73,6 @@ $columns: ("xs": 2, "sm": 2, "md": 8, "lg": 8, "xl": 12, "2xl": 12, "3xl": 12);
           }
         }
       }
-
-      
     }
   }  
 }

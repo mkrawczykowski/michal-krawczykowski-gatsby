@@ -1,0 +1,9 @@
+@use '../../../styles/global/' as global;
+
+.section{
+    padding: 4.7rem 0;
+}
+
+.grayBackground{
+    background-color: global.$gray3;
+}

@@ -1,14 +1,15 @@
 import React from 'react';
 import WYSIWYG from '../WYSIWYG/WYSIWYG';
 import ListOfPosts from '../ListOfPosts/ListOfPosts';
+import {generateSectionName} from '../../../inc/helpers';
 
 const FlexibleSection = ({section, postCategories, postID}) => {
     let sections = [];
     const generateNestedSections = () => {
         if (section.sections){
             section.sections.map(nestedSection => {
-            sections.push(<FlexibleSection section={nestedSection} postID={postID} postCategories={postCategories} />) 
-        });
+                sections.push(<FlexibleSection section={nestedSection} postID={postID} postCategories={postCategories} />) 
+            });
         }
 
     }
@@ -21,7 +22,7 @@ const FlexibleSection = ({section, postCategories, postID}) => {
         )
     }
 
-    let sectionName = section.fieldGroupName.substring(section.fieldGroupName.lastIndexOf('_')+1, section.fieldGroupName.length);
+    let sectionName = generateSectionName(section.fieldGroupName);
     
     switch(sectionName){
         case 'Wysiwyg':
