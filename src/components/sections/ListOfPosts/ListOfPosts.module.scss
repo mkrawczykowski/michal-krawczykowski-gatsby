@@ -1,4 +1,4 @@
-@use '../../../styles/global/variables';
+@use '../../../styles/global/' as global;
 
 .listOfPosts{
     &__sectionTitle{
@@ -7,6 +7,10 @@
         font-size: 1.69rem;
         line-height: 130%;
         letter-spacing: -0.07rem;
-        margin: 0 0 2.7rem 0
+        margin: 0 0 2.7rem 0;
+
+        @include global.media-up(md){
+            font-size: 2rem;
+        }
     }
 }
