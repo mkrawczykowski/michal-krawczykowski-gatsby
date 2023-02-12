@@ -23,6 +23,14 @@ const TheLoop = ({categories, omitPostId}) => {
                             id
                         }
                     }
+                    featuredImage{
+                        node{
+                            altText
+                            title
+                            mediaItemUrl
+                            
+                        }
+                    }
                 }
             }
         }
