@@ -13,7 +13,9 @@ const ThePost = ({post}) => {
     const image = getImage(post.featuredImage.node.localFile)
     return(
         <div className={styles.post}>
-            <GatsbyImage image={image} alt="no alt for now"></GatsbyImage>
+            <div className={styles.post__image}>
+                <GatsbyImage image={image} alt="no alt for now"></GatsbyImage>     
+            </div>
             <p className={styles.post__date}>{betterDate(date)}</p>
             <Link className={styles.post__titleLink} to={post.slug}><h2>{title}</h2></Link>
             <p className={styles.post__excerpt}>{excerpt}</p>    
