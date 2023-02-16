@@ -23,14 +23,32 @@ const TheLoop = ({categories, omitPostId}) => {
                             id
                         }
                     }
-                    featuredImage{
-                        node{
-                            altText
-                            title
-                            mediaItemUrl
-                            
+                    featuredImage {
+                        node {
+                          gatsbyImage(
+                            width: 1920
+                            placeholder: BLURRED
+                            formats: AUTO
+                            cropFocus: CENTER
+                            outputPixelDensities: [1, 2]
+                            fit: COVER
+                            breakpoints: [576, 744, 992, 1200, 1400, 1800]
+                            aspectRatio: 2
+                          )
+                          localFile {
+                            childImageSharp {
+                                gatsbyImageData(
+                                  width: 1920
+                                  placeholder: BLURRED
+                                  formats: WEBP
+                                  outputPixelDensities: [1, 2]
+                                  breakpoints: [576, 744, 992, 1200, 1400, 1800]
+                                  aspectRatio: 2
+                                )
+                              }
+                          }
                         }
-                    }
+                      }
                 }
             }
         }
