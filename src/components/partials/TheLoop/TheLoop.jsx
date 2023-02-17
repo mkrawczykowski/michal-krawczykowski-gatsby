@@ -43,7 +43,7 @@ const TheLoop = ({categories, omitPostId}) => {
                                   formats: WEBP
                                   outputPixelDensities: [1, 2]
                                   breakpoints: [576, 744, 992, 1200, 1400, 1800]
-                                  aspectRatio: 2
+                                  aspectRatio: 1.8
                                 )
                               }
                           }
