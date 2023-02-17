@@ -8,9 +8,14 @@
         line-height: 130%;
         letter-spacing: -0.07rem;
         margin: 0 0 2.7rem 0;
+        display: none;
 
         @include global.media-up(md){
             font-size: 2rem;
+            display: inline-block;
+            font-size: 2.3rem;
+            letter-spacing: -0.1rem;
+            margin: 0 0 2.6rem 0;
         }
     }
 }
