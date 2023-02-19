@@ -43,11 +43,11 @@ const ListOfPosts = ({data, postCategories, postID}) => {
         <Container>
             <Row>
                 <Col classes="col-xs-2 col-sm-2 col-md-8">
-                        <>
-                            {dSectionsHeading ? <h2 className={styles.listOfPosts__sectionTitle}>{dSectionsHeading}</h2> : null}
-                            <TheLoop categories={sourceCategories} omitPostId={postID}></TheLoop>
-                        </>
+                        {dSectionsHeading ? <h2 className={styles.listOfPosts__sectionTitle}>{dSectionsHeading}</h2> : null} 
                 </Col>
+            </Row>
+            <Row>
+                <TheLoop categories={sourceCategories} omitPostId={postID}></TheLoop>
             </Row>
         </Container>
     )
