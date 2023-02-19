@@ -10,15 +10,29 @@ const ThePost = ({post}) => {
     const date = post.date;
     const title = post.title;
     const excerpt = post.PostACFData.postExcerpt;
-    const image = getImage(post.featuredImage.node.localFile);
+
+    let image;
+    let imageComponent;
+    let postImageClass = '';
+
+    if (post.featuredImage){
+        image = getImage(post.featuredImage.node.localFile);
+        postImageClass = 'post_withImage';
+        imageComponent = 
+            <div className={styles.post__image}>
+                <GatsbyImage className={styles.post__gatsbyImage} image={image} alt="no alt for now"></GatsbyImage>     
+            </div>
+    }
+    
     return(
-        <div className={styles.post}>
+        <div className={[styles.post, styles[postImageClass]].join(' ')}>
             <p className={styles.post__date}>{betterDate(date)}</p>
             <Link className={styles.post__titleLink} to={post.slug}><h2>{title}</h2></Link>
             <p className={styles.post__excerpt}>{excerpt}</p>
-            <div className={styles.post__image}>
-                <GatsbyImage className={styles.post__gatsbyImage} image={image} alt="no alt for now"></GatsbyImage>     
-            </div> 
+            {
+                imageComponent ? imageComponent : null
+            }
+            
         </div>
     )
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import {useStaticQuery, graphql} from 'gatsby';
+import {Col} from '../../structure/Grid/Grid';
 import ThePost from '../ThePost/ThePost';
 import {isInCategory} from '../../../inc/helpers';
 
@@ -60,7 +61,9 @@ const TheLoop = ({categories, omitPostId}) => {
             let postCategories = allPost.categories.nodes.map(node => node.id);
             if (allPost.id != omitPostId && isInCategory(categories, postCategories)){
                 return(
-                    <ThePost post={allPost}></ThePost>
+                    <Col classes="col-xs-2 col-sm-2 col-md-4 col-xl-6 col-2xl-12">
+                        <ThePost post={allPost}></ThePost>
+                    </Col>
                 )
             }
         })
