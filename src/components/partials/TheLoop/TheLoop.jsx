@@ -61,16 +61,13 @@ const TheLoop = ({categories, omitPostId}) => {
             let postCategories = allPost.categories.nodes.map(node => node.id);
             if (allPost.id != omitPostId && isInCategory(categories, postCategories)){
                 return(
-                    <Col classes="col-xs-2 col-sm-2 col-md-4 col-xl-6 col-2xl-12">
+                    <Col classes="col-xs-2 col-sm-2 col-md-4 col-xl-12 col-2xl-12">
                         <ThePost post={allPost}></ThePost>
                     </Col>
                 )
             }
         })
     )
-    
-
-
 }
 
 export default TheLoop;

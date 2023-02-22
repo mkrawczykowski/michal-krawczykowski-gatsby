@@ -5,9 +5,9 @@
 // Grid settings
 $containerHorizontalPadding: 3.4; //rem units
 $container-width: 134.4; //rem units
-$containerWidths: ("xs": 134.4, "sm": 134.4, "md": 66.60, "lg": 134.4, "xl": 134.4, "2xl": 134.4, "3xl": 134.4); //rem units
+$containerWidths: ("xs": 134.4, "sm": 134.4, "md": 66.60, "lg": 134.4, "xl": 134.4, "xxl": 134.4, "xxxl": 134.4); //rem units
 $gap: 3.4rem;
-$columns: ("xs": 2, "sm": 2, "md": 8, "lg": 8, "xl": 12, "2xl": 12, "3xl": 12);
+$columns: ("xs": 2, "sm": 2, "md": 8, "lg": 8, "xl": 12, "xxl": 12, "xxxl": 12);
 
 
 // @each $breakpointName, $breakpointValue in variables.$breakpoints {
