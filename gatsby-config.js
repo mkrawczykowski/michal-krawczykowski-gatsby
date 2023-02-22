@@ -26,7 +26,7 @@ module.exports = {
     {
       resolve: "gatsby-transformer-sharp",
       options: {
-        quality: 40,
+        quality: 50,
       }
     },
     "gatsby-plugin-sass",
