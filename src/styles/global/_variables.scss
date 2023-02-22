@@ -12,7 +12,7 @@ $redishorange: #d45135;
 $font-main: 'Raleway', sans-serif;
 $font-secondary: 'Lato', sans-serif;
 
-$breakpoints: ("xs": 0, "sm": 576, "md": 744, "lg": 992, "xl": 1200, "2xl": 1400, "3xl": 1800);
+$breakpoints: ("xs": 0, "sm": 576, "md": 744, "lg": 992, "xl": 1200, "xxl": 1400, "xxxl": 1800);
 
 @mixin media-down($breakpoint){
     $pixelsBreakpoint: map-get($breakpoints, $breakpoint) - 1px;
