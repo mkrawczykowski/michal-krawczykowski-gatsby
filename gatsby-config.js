@@ -23,12 +23,14 @@ module.exports = {
     }, 
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
-    {
-      resolve: "gatsby-transformer-sharp",
-      options: {
-        quality: 50,
-      }
-    },
+    "gatsby-transformer-sharp",
+    // {
+    //   resolve: "gatsby-transformer-sharp",
+    //   options: {
+    //     quality: 50,
+    //     breakpoints: [750, 1080, 1366, 1920],
+    //   }
+    // },
     "gatsby-plugin-sass",
     {
       resolve: `gatsby-plugin-purgecss`,

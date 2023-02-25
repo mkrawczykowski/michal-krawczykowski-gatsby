@@ -1,0 +1,14 @@
+@use '../../../styles/global/' as global;
+
+.featuredImage{
+    width: 74.4rem;
+    max-width: 100%;
+
+    @include global.media-up(sm){
+        width: 99rem;
+    }
+    
+    @include global.media-up(xl){
+        width: 110rem;
+    }
+}

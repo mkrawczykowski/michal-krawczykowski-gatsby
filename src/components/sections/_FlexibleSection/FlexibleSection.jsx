@@ -1,6 +1,7 @@
 import React from 'react';
 import WYSIWYG from '../WYSIWYG/WYSIWYG';
 import ListOfPosts from '../ListOfPosts/ListOfPosts';
+import ImageWithCaption from '../ImageWithCaption/ImageWithCaption';
 import {generateSectionName} from '../../../inc/helpers';
 
 const FlexibleSection = ({section, postCategories, postID}) => {
@@ -30,6 +31,9 @@ const FlexibleSection = ({section, postCategories, postID}) => {
             break;
         case 'Listofposts':
             sections.push(<ListOfPosts postCategories={postCategories} data={section} postID={postID} />)
+            break;
+        case 'Imagewithcaption':
+            sections.push(<ImageWithCaption data={section} />)
             break;
         case 'Section':
             generateNestedSections();
