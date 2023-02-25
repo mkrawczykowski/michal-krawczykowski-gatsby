@@ -1,4 +1,5 @@
 import React from 'react';
+import {graphql} from 'gatsby'
 import {GatsbyImage, getImage} from 'gatsby-plugin-image';
 
 
@@ -29,7 +30,7 @@ export const postQuery = graphql`
                         sizes: ""
                         breakpoints: [576, 744, 992, 1200, 1400, 1800]
                         layout: CONSTRAINED
-                        outputPixelDensities: "[1,2]"
+                        outputPixelDensities: [1,2]
                     )
                 }
             }
@@ -53,7 +54,7 @@ export const pageQuery = graphql`
                         sizes: ""
                         breakpoints: [576, 744, 992, 1200, 1400, 1800]
                         layout: CONSTRAINED
-                        outputPixelDensities: "[1,2]"
+                        outputPixelDensities: [1,2]
                     )
                 }
             }
@@ -77,7 +78,7 @@ export const postQuerySection = graphql`
                         sizes: ""
                         breakpoints: [576, 744, 992, 1200, 1400, 1800]
                         layout: CONSTRAINED
-                        outputPixelDensities: "[1,2]"
+                        outputPixelDensities: [1,2]
                     )
                 }
             }
@@ -101,7 +102,7 @@ export const pageQuerySection = graphql`
                         sizes: ""
                         breakpoints: [576, 744, 992, 1200, 1400, 1800]
                         layout: CONSTRAINED
-                        outputPixelDensities: "[1,2]"
+                        outputPixelDensities: [1,2]
                     )
                 }
             }
