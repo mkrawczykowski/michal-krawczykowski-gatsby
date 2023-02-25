@@ -15,15 +15,20 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
-    "gatsby": "^5.3.3",
+    "gatsby": "^5.7.0",
     "gatsby-plugin-image": "^3.4.0",
     "gatsby-plugin-purgecss": "^6.2.1",
     "gatsby-plugin-sass": "^6.4.0",
     "gatsby-plugin-sharp": "^5.4.0",
-    "gatsby-source-wordpress": "^7.4.0",
+    "gatsby-source-wordpress": "^7.7.0",
     "gatsby-transformer-sharp": "^5.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sass": "^1.57.1"
+    "sass": "^1.57.1",
+    "sharp": "^0.31.3"
+  },
+  "engines": {
+	  "node": "18.x"
   }
+	  
 }
