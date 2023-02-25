@@ -1,8 +1,11 @@
 import React from 'react';
 import {graphql} from 'gatsby';
 import Layout from '../components/structure/Layout/Layout';
+import {Container, Row, Col} from '../components/structure/Grid/Grid';
+import {getImage} from 'gatsby-plugin-image';
 import FlexibleSections from '../components/sections/_FlexibleSections/FlexibleSections';
 import PageTitle from '../components/structure/PageTitle/PageTitle';
+import FeaturedImage from '../components/partials/FeaturedImage/FeaturedImage';
 
 export const query = graphql`
     query($id: String!){
@@ -22,7 +25,25 @@ export const query = graphql`
                             ...WYSIWYGFragmentPostSection
                         }
                     }
-                    
+                }
+            }
+            featuredImage {
+                node {
+                    altText
+                    localFile {
+                        childImageSharp {
+                            gatsbyImageData(
+                                width: 1920
+                                placeholder: BLURRED
+                                formats: WEBP
+                                aspectRatio: 2
+                                sizes: ""
+                                breakpoints: [576, 744, 992, 1200, 1400, 1800]
+                                layout: CONSTRAINED
+                                outputPixelDensities: [1, 2]
+                            )
+                        }
+                    }
                 }
             }
             categories {
@@ -42,24 +63,27 @@ const PostTemplate = ({data, pageContext }) => {
     const descriptionACF = data.wpPost.PageTitle.pageDescription;
     const flexibleSections = data.wpPost.flexibleSections.sections;
     const postCategories = data.wpPost.categories.nodes;
-
+    const featuredImage = data.wpPost.featuredImage ? getImage(data.wpPost.featuredImage.node.localFile) : null;
+    const featuredImageAlt = featuredImage ? data.wpPost.featuredImage.node.altText : null;
     return(
         <Layout>
-            <pre>{JSON.stringify(data, null, 2)}</pre>
+            <pre>{JSON.stringify(data.featuredImage, null, 2)}</pre>
             <main>
                 <PageTitle title={title} titleACF={titleACF} descriptionACF={descriptionACF}></PageTitle>
+                <Container>
+                    <Row>
+                        <Col classes="col col-xxl-1"></Col>
+                        <Col classes="col-2 col-md-8 col-xxl-10">
+                            {
+                                featuredImage ? <FeaturedImage image={featuredImage} alt={featuredImageAlt} /> : null
+                            }
+                        </Col>
+                        <Col classes="col col-xxl-1"></Col>
+                    </Row>
+                </Container>
                 {
                     flexibleSections ? <FlexibleSections sections={flexibleSections} postCategories={postCategories} postID={postID}></FlexibleSections> : null
                 }
-                    {/* //optional chaining
-                    // flexibleSections?.map((flexibleSection, flexibleSectionIndex) => {
-                    //     const {fieldGroupName, ...sectionData} = flexibleSection;
-                        
-                    //     return(
-                    //         <FlexibleSections key={flexibleSectionIndex} flexibleSection={flexibleSection} fieldGroupName={fieldGroupName} sectionData={sectionData}></FlexibleSections>    
-                    //     )
-                    // }) 
-                }*/}
             </main>
         </Layout>
     )
