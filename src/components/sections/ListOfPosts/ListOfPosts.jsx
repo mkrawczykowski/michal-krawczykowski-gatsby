@@ -14,6 +14,9 @@ const ListOfPosts = ({data, postCategories, postID}) => {
             }
         }
     `)
+
+    console.log('styles ListOfPosts');
+    console.log(styles);
     
     const dSectionsHeading = data.sectionsHeading;
     const dSourceOfPosts = data.sourceOfPosts;
