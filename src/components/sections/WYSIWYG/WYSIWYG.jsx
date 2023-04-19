@@ -7,14 +7,13 @@ const WYSIWYG = ({data}) => {
     const wysiwyg = data.wysiwyg;
 
     return(
-            <Container>
-                <Row>
-                    <Col classes="col-xs-2 col-sm-1 col-2xl-1"></Col>
-                    <Col classes="col-xs-2 col-sm-6 col-2xl-10" innerHTML={{__html: wysiwyg}}>
-                    </Col>
-                    <Col classes="col-xs-2 col-sm-1 col-2xl-1"></Col>
-                </Row>
-            </Container>
+        <Container>
+            <Row>
+                <Col classes="col-xs-2 col-sm-1 col-md-1 col-xxl-3"></Col>
+                <Col classes="col-xs-2 col-sm-6 col-md-6 col-xxl-6" innerHTML={{__html: wysiwyg}}></Col>
+                <Col classes="col-xs-2 col-sm-1 col-md-1 col-xxl-3"></Col>
+            </Row>
+        </Container>
     )
 }
 

@@ -1,21 +1,35 @@
 import React from 'react';
 import {graphql} from 'gatsby'
 import {GatsbyImage, getImage} from 'gatsby-plugin-image';
+import {Container, Col, Row} from '../../structure/Grid/Grid';
 
 
 const ImageWithCaption = ({data}) => {
-    const featuredImage = data.wpPost.featuredImage ? getImage(data.wpPost.featuredImage.node.localFile) : null;
+    const dataFeaturedImage = data.image;
+    const featuredImage = dataFeaturedImage ? getImage(data.image.localFile) : null;
+    
     return(
-        <figure>
-
-        </figure>    
+        <Container>
+            <Row>
+                <Col classes="col-xs-2 col-sm-2 col-md-8 col-xxl-2"></Col>
+                <Col classes="col-xs-2 col-sm-2 col-md-8 col-xxl-8">
+                    <figure>
+                        <GatsbyImage image={featuredImage} />
+                        {
+                            data.imageCaption ? <figcaption>{data.imageCaption}</figcaption> : null
+                        }
+                    </figure>      
+                </Col>
+                <Col classes="col-xs-2 col-sm-2 col-md-8 col-xxl-2"></Col>
+            </Row>
+        </Container>
     )
 }
 
 export default ImageWithCaption;
 
 export const postQuery = graphql`
-    fragment ImagewithcaptionFragmentPost on WpPost_Flexiblesections_Sections_Imagewithcaption{
+    fragment ImageWithCaptionFragmentPost on WpPost_Flexiblesections_Sections_Imagewithcaption{
         fieldGroupName
         imageCaption
         image {
@@ -23,7 +37,7 @@ export const postQuery = graphql`
             localFile {
                 childImageSharp {
                     gatsbyImageData(
-                        width: 900
+                        width: 1100
                         placeholder: BLURRED
                         formats: WEBP
                         aspectRatio: 1.8
@@ -39,7 +53,7 @@ export const postQuery = graphql`
 `
 
 export const pageQuery = graphql`
-    fragment ImagewithcaptionFragmentPage on WpPage_Flexiblesections_Sections_Imagewithcaption{
+    fragment ImageWithCaptionFragmentPage on WpPage_Flexiblesections_Sections_Imagewithcaption{
         fieldGroupName
         imageCaption
         image {
@@ -63,7 +77,7 @@ export const pageQuery = graphql`
 `
 
 export const postQuerySection = graphql`
-    fragment ImagewithcaptionFragmentPostSection on WpPost_Flexiblesections_Sections_Section_Sections_Imagewithcaption{
+    fragment ImageWithCaptionFragmentPostSection on WpPost_Flexiblesections_Sections_Section_Sections_Imagewithcaption{
         fieldGroupName
         imageCaption
         image {
@@ -87,7 +101,7 @@ export const postQuerySection = graphql`
 `
 
 export const pageQuerySection = graphql`
-    fragment ImagewithcaptionFragmentPageSection on WpPage_Flexiblesections_Sections_Section_Sections_Imagewithcaption{
+    fragment ImageWithCaptionFragmentPageSection on WpPage_Flexiblesections_Sections_Section_Sections_Imagewithcaption{
         fieldGroupName
         imageCaption
         image {
