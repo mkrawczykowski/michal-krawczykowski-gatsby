@@ -5,33 +5,42 @@
 // Grid settings
 $containerHorizontalPadding: 3.4; //rem units
 $container-width: 134.4; //rem units
-$containerWidths: ("xs": 134.4, "sm": 134.4, "md": 66.60, "lg": 134.4, "xl": 134.4, "xxl": 134.4, "xxxl": 134.4); //rem units
+$containerWidths: (
+  "xs": 134.4,
+  "sm": 134.4,
+  "md": 66.60,
+  "lg": 134.4,
+  "xl": 134.4,
+  "xxl": 134.4,
+  "xxxl": 134.4
+); //rem units
 $gap: 3.4rem;
-$columns: ("xs": 2, "sm": 2, "md": 8, "lg": 8, "xl": 12, "xxl": 12, "xxxl": 12);
+$columns: (
+  "xs": 2,
+  "sm": 2,
+  "md": 8,
+  "lg": 8,
+  "xl": 12,
+  "xxl": 12,
+  "xxxl": 12
+);
 
-
-// @each $breakpointName, $breakpointValue in variables.$breakpoints {
-//   $breakpointValuePx: $breakpointValue * 1px;
-//   $containerWidthForBreakpoint: map.get($containerWidths, $breakpointName);
-//     @media screen and (min-width:#{$breakpointValuePx}){
-//       max-width: calc(($containerWidthForBreakpoint * 1rem) + $gap);
-//     }
-// }
-
-.container{
+.container {
   width: 100%;
   padding: 0 calc($containerHorizontalPadding / 2) * 1rem;
   margin: 0 auto;
 
-  @each $breakpointName, $breakpointValue in variables.$breakpoints {
+  @each $breakpointName,
+  $breakpointValue in variables.$breakpoints {
     $breakpointValuePx: $breakpointValue * 1px;
     $containerWidthForBreakpoint: map.get($containerWidths, $breakpointName);
-      @media screen and (min-width:#{$breakpointValuePx}){
-        max-width: calc(($containerWidthForBreakpoint * 1rem) + $gap);
-      }
+
+    @media screen and (min-width:#{$breakpointValuePx}) {
+      max-width: calc(($containerWidthForBreakpoint * 1rem) + $gap);
+    }
   }
 
-  .row{
+  .row {
     display: flex;
     margin-left: calc($gap / 2 * -1);
     margin-right: calc($gap / 2 * -1);
@@ -39,34 +48,38 @@ $columns: ("xs": 2, "sm": 2, "md": 8, "lg": 8, "xl": 12, "xxl": 12, "xxxl": 12);
     align-items: flex-start;
     flex-wrap: wrap;
 
-    .col{
+    .col {
       padding-right: calc($gap / 2);
       padding-left: calc($gap / 2);
       width: 100%;
     }
-    
-    @each $breakpointName, $breakpointValue in variables.$breakpoints {
+
+    @each $breakpointName,
+    $breakpointValue in variables.$breakpoints {
       $breakpointsIndex: index(variables.$breakpoints, $breakpointName $breakpointValue);
       $breakpointValuePx: $breakpointValue * 1px;
-      
+
       $colsNumberForBreakpoint: map.get($columns, $breakpointName);
-      $colWidth:  math.div(100%, $colsNumberForBreakpoint);
-      @if $breakpointsIndex <= $colsNumberForBreakpoint{
-        @media screen and (min-width:#{$breakpointValuePx}){
-          @for $i from $colsNumberForBreakpoint through 1{
+      $colWidth: math.div(100%, $colsNumberForBreakpoint);
+
+      @if $breakpointsIndex <=$colsNumberForBreakpoint {
+        @media screen and (min-width:#{$breakpointValuePx}) {
+          @for $i from $colsNumberForBreakpoint through 1 {
             .col-#{$breakpointName}-#{$i} {
               width: calc(#{$colWidth} * #{$i});
               $parentWidth: $colWidth * $i;
-              
-              @each $breakpointNameChild, $breakpointValueChild in variables.$breakpoints {
+
+              @each $breakpointNameChild,
+              $breakpointValueChild in variables.$breakpoints {
                 $breakpointsIndexChild: index(variables.$breakpoints, $breakpointNameChild $breakpointValueChild);
-                @if $breakpointsIndexChild <= $breakpointsIndex{
-                  @for $childIndex from $colsNumberForBreakpoint through 1{
+
+                @if $breakpointsIndexChild <=$breakpointsIndex {
+                  @for $childIndex from $colsNumberForBreakpoint through 1 {
                     .col-#{$breakpointNameChild}-#{$childIndex} {
-                      $parentToChildRatio: math.div($colsNumberForBreakpoint,$i);
+                      $parentToChildRatio: math.div($colsNumberForBreakpoint, $i);
                       width: math.div(100%, $parentWidth) * $childIndex * $colWidth;
                     }
-                  }   
+                  }
                 }
               }
             }
@@ -74,5 +87,5 @@ $columns: ("xs": 2, "sm": 2, "md": 8, "lg": 8, "xl": 12, "xxl": 12, "xxxl": 12);
         }
       }
     }
-  }  
+  }
 }
